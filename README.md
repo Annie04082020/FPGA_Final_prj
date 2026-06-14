@@ -35,10 +35,28 @@
 ---
 
 ## 如何使用此專案？
-1. 打開 Vitis HLS (或 Vivado HLS)。
-2. 建立新專案，設定 Top Function 為 `sketch_filter`。
-3. 將 `hls_real/sketch_filter.cpp` 與 `hls_real/sketch_filter.h` 加入 Source files。
-4. 將 `hls_real/sketch_filter_tb.cpp` 加入 Testbench files。
-5. 點擊 **Run C Simulation** 驗證邏輯。
-6. 點擊 **C Synthesis** 進行硬體合成。
-7. 點擊 **Export RTL** 產出 IP `.zip` 壓縮檔，接著即可導入 Vivado 進行 Block Design。
+
+### 階段一：Vitis HLS 硬體合成
+1. 打開 Vitis HLS，建立新專案，設定 Top Function 為 `sketch_filter`。
+2. 將 `hls_real/sketch_filter.cpp` 與 `hls_real/sketch_filter.h` 加入 Source files。
+3. 將 `hls_real/sketch_filter_tb.cpp` 加入 Testbench files。
+4. 點擊 **Run C Simulation** 驗證邏輯。
+5. 點擊 **C Synthesis** 進行硬體合成。
+6. 點擊 **Export RTL** 產出 IP `.zip` 壓縮檔。
+
+### 階段二：Vivado 系統接線 (Block Design)
+將匯出的 IP 導入 Vivado 並建立 Block Design：
+1. 加入 **ZYNQ7 Processing System**，並開啟 **S AXI HP0** 與 **S AXI HP1** 介面（雙通道獨立傳輸效能最佳）。
+2. 加入 `sketch_filter` IP。
+3. **【避坑指南：解決 Address Overlap】**
+   不要讓 Vivado 的自動連線將 `gmem0` 與 `gmem1` 塞進同一個 AXI Interconnect！
+   請手動將：
+   - `m_axi_gmem0` 直接接上 Zynq 的 `S_AXI_HP0`。
+   - `m_axi_gmem1` 直接接上 Zynq 的 `S_AXI_HP1`。
+4. 點擊 `Run Connection Automation` 補齊時脈與重置訊號。
+5. 產出 HDL Wrapper 並點擊 **Generate Bitstream** 輸出 `.bit` 與 `.hwh` 檔。
+
+### 階段三：PYNQ 上板測試
+專案內附帶了完整的 Python 測試腳本：
+*   **`pynq/sketch_filter_test.ipynb`**：包含如何讀取圖片、分配連續實體記憶體 (CMA)、透過 AXI-Lite 控制 IP、量測運算時間的完整測試代碼。
+*   將 `.bit`、`.hwh` 與這個 `.ipynb` 腳本放入 PYNQ 開發板，即可馬上看到硬體加速的驚人效能！

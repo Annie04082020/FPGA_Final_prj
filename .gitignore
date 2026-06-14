@@ -7,6 +7,7 @@
 *.aps
 *.app
 .Xil/
+hls_dummy.zip
 
 # 忽略 HLS 合成與模擬過程產生的龐大資料夾 (保留你的原始碼即可)
 */solution*/
@@ -16,7 +17,7 @@ hls_final_project/
 !*/solution*/script.tcl
 
 # HLS 導出的 IP 包 (如果你希望在 GitHub 上保留編譯好的 IP 給隊友，可以把這行註解掉)
-*.zip
+# *.zip
 # 忽略解壓縮後的 IP 資料夾
 export/
 
@@ -54,7 +55,7 @@ __pycache__/
 *.pyc
 .ipynb_checkpoints/
 *.jpg
-*.png
+# *.png
 *.bmp
 # 如果你想保留測試原圖 (如 Golden Image)，可以特別排除，例如：
 # !test_image.jpg
