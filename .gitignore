@@ -1,0 +1,67 @@
+# ==========================================
+# Xilinx Vitis HLS 生成檔案
+# ==========================================
+*.log
+*.jou
+*.str
+*.aps
+*.app
+.Xil/
+
+# 忽略 HLS 合成與模擬過程產生的龐大資料夾 (保留你的原始碼即可)
+*/solution*/
+# 忽略你剛剛建立的整個 Vitis HLS 專案資料夾 (只保留手寫的 hls_real 與 hls_dummy 原始碼)
+hls_final_project/
+# 視情況保留 HLS 的專案建置腳本
+!*/solution*/script.tcl
+
+# HLS 導出的 IP 包 (如果你希望在 GitHub 上保留編譯好的 IP 給隊友，可以把這行註解掉)
+*.zip
+
+
+# ==========================================
+# Xilinx Vivado 生成檔案
+# ==========================================
+*.cache/
+*.hw/
+*.ip_user_files/
+*.runs/
+*.sim/
+
+# Vivado Block Design (BD) 自動生成的龐大底層檔案
+*.srcs/sources_1/bd/*/hw_handoff/
+*.srcs/sources_1/bd/*/ipshared/
+*.srcs/sources_1/bd/*/sim/
+*.srcs/sources_1/bd/*/synth/
+*.srcs/sources_1/bd/*/ui/
+*.srcs/sources_1/bd/*/*.bxml
+
+# 最終燒錄檔 (通常佔用空間大不建議進 Git 版控，Release 時再手動上傳)
+*.bit
+*.hwh
+*.xsa
+
+
+# ==========================================
+# Python / Jupyter Notebook (PYNQ PS端)
+# ==========================================
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+*.jpg
+*.png
+*.bmp
+# 如果你想保留測試原圖 (如 Golden Image)，可以特別排除，例如：
+# !test_image.jpg
+
+
+# ==========================================
+# 作業系統與編輯器暫存檔
+# ==========================================
+.DS_Store
+Thumbs.db
+.vscode/
+
+# 忽略瀏覽器儲存網頁產生的檔案與資料夾
+*.html
+*_files/
