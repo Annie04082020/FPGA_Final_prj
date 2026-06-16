@@ -6,6 +6,11 @@
 *.str
 *.aps
 *.app
+*.apc/
+*.settings/
+*.cproject
+*.project
+*.vitis_hls_log*
 .Xil/
 hls_dummy.zip
 
