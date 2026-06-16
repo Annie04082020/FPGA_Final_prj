@@ -18,11 +18,12 @@ hls_dummy.zip
 */solution*/
 # 忽略你剛剛建立的整個 Vitis HLS 專案資料夾 (只保留手寫的 hls_real 與 hls_dummy 原始碼)
 hls_final_project/
+
 # 視情況保留 HLS 的專案建置腳本
 !*/solution*/script.tcl
 
 # HLS 導出的 IP 包 (如果你希望在 GitHub 上保留編譯好的 IP 給隊友，可以把這行註解掉)
-# *.zip
+*.zip
 # 忽略解壓縮後的 IP 資料夾
 export/
 
@@ -32,6 +33,7 @@ export/
 # ==========================================
 # 忽略整個 Vivado GUI 建立的專案資料夾 (通常只上傳重新建構用的 .tcl 腳本)
 sketch_filter_vivado/
+sketch_gaussian_vivado/
 
 *.cache/
 *.hw/
